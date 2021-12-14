@@ -1,5 +1,6 @@
 import React from 'react';
 import s from './header.module.css'
+import {SearchField} from "./Search/Search";
 
 function Header() {
     return (
@@ -9,7 +10,7 @@ function Header() {
                     <img src={''} alt='logo'/>
                 </div>
                 <div className={s.search}>
-                    <input/>
+                    <SearchField />
                 </div>
             </div>
         </div>
