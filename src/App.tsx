@@ -1,14 +1,14 @@
 import React from 'react';
 import './App.css';
 import Header from "./components/header/header";
-import Main from "./components/main/main";
+import {Profile} from "./components/profile/profile";
 
 function App() {
 
     return (
         <div>
             <Header/>
-            <Main/>
+            <Profile/>
         </div>
     )
 }

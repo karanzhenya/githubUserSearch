@@ -19,7 +19,10 @@ const initialState: UsersStateType = {
     events_url: "",
     received_events_url: "",
     type: "",
-    site_admin: false
+    site_admin: false,
+    name: "",
+    followers: 0,
+    following: 0
 }
 export const profileReducer = (state: UsersStateType = initialState, action: any) => {
     switch (action.type) {

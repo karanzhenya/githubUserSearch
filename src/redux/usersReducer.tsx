@@ -18,7 +18,10 @@ export type UsersStateType = {
     events_url: string,
     received_events_url: string,
     type: string,
-    site_admin: boolean
+    site_admin: boolean,
+    name: string,
+    followers: number,
+    following: number
 }
 
 const initialState: Array<any> = []
