@@ -1,0 +1,18 @@
+.search {
+    position: relative;
+}
+.search input {
+    height: 23px;
+    padding-left: 25px;
+    border: none;
+    width: 250px;
+    background-color: white;
+    margin-left: 20px;
+    border-radius: 5px;
+}
+
+.icon {
+    color: grey;
+    position: absolute;
+    left: 20px;
+}

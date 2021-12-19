@@ -1,34 +1,137 @@
 import {usersApi} from "../api/usersApi"
-import {UsersStateType} from "./usersReducer";
+import {Dispatch} from "redux";
+
+
+export type UsersStateType = {
+    login: string,
+    id: number,
+    avatar_url: string,
+    url: string,
+    followers_url: string,
+    following_url: string,
+    repos_url: string,
+    public_repos: string,
+    name: string,
+    followers: number,
+    following: number,
+    repositories: Array<UserReposType>
+}
+export type UserReposType = {
+    allow_forking: boolean
+    archive_url: string
+    archived: boolean
+    assignees_url: string
+    blobs_url: string
+    branches_url: string
+    clone_url: string
+    collaborators_url: string
+    comments_url: string
+    commits_url: string
+    compare_url: string
+    contents_url: string
+    contributors_url: string
+    created_at: string
+    default_branch: string
+    deployments_url: string
+    description: string
+    disabled: boolean
+    downloads_url: string
+    events_url: string
+    fork: boolean
+    forks: number
+    forks_count: number
+    forks_url: string
+    full_name: string
+    git_commits_url: string
+    git_refs_url: string
+    git_tags_url: string
+    git_url: string
+    has_downloads: boolean
+    has_issues: boolean
+    has_pages: boolean
+    has_projects: boolean
+    has_wiki: boolean
+    homepage: string
+    hooks_url: string
+    html_url: string
+    id: number
+    is_template: boolean
+    issue_comment_url: string
+    issue_events_url: string
+    issues_url: string
+    keys_url: string
+    labels_url: string
+    language: string
+    languages_url: string
+    license: {}
+    merges_url: string
+    milestones_url: string
+    mirror_url: null
+    name: string
+    node_id: string
+    notifications_url: string
+    open_issues: number
+    open_issues_count: number
+    owner: {}
+    private: boolean
+    pulls_url: string
+    pushed_at: string
+    releases_url: string
+    size: number
+    ssh_url: string
+    stargazers_count: number
+    stargazers_url: string
+    statuses_url: string
+    subscribers_url: string
+    subscription_url: string
+    svn_url: string
+    tags_url: string
+    teams_url: string
+    topics: []
+    trees_url: string
+    updated_at: string
+    url: string
+    visibility: string
+    watchers: number
+    watchers_count: number
+}
 
 const initialState: UsersStateType = {
     login: "",
     id: 0,
-    node_id: "",
     avatar_url: "",
-    gravatar_id: "",
     url: "",
-    html_url: "",
     followers_url: "",
     following_url: "",
-    gists_url: "",
-    starred_url: "",
-    subscriptions_url: "",
-    organizations_url: "",
     repos_url: "",
-    events_url: "",
-    received_events_url: "",
-    type: "",
-    site_admin: false,
+    public_repos: "",
     name: "",
     followers: 0,
-    following: 0
+    following: 0,
+    repositories: []
 }
-export const profileReducer = (state: UsersStateType = initialState, action: any) => {
+
+type SetUserProfileType = {
+    type: 'SET_USER_PROFILE',
+    data: any
+}
+type SetUserRepos = {
+    type: 'SET_USER_REPOS',
+    repos: any
+}
+
+type ActionsType = SetUserProfileType | SetUserRepos;
+
+export const profileReducer = (state: UsersStateType = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'SET_USER_PROFILE': {
             let stateCopy = {...state}
             return stateCopy = action.data
+        }
+        case "SET_USER_REPOS": {
+            let stateCopy = {...state}
+            stateCopy.repositories = action.repos
+            return stateCopy
         }
         default:
             return state;
@@ -38,13 +141,16 @@ export const profileReducer = (state: UsersStateType = initialState, action: any
 export const SetUserProfile = (data: any) => {
     return {type: 'SET_USER_PROFILE', data}
 }
-export const GetUserProfileThunk = (login: string) => async (dispatch: Function) => {
+export const SetUserRepositories = (repos: Array<UserReposType>) => {
+    return {type: 'SET_USER_REPOS', repos}
+}
+export const GetUserProfileThunk = (login: string) => async (dispatch: Dispatch) => {
     try {
-        let data = await usersApi.getUserProfile(login)
-        console.log(data)
+        const data = await usersApi.getUserProfile(login)
         dispatch(SetUserProfile(data))
+        const repos = await usersApi.getUserRepos(login)
+        dispatch(SetUserRepositories(repos))
     } catch (err) {
         console.log(err)
     }
-
 }

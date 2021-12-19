@@ -8,5 +8,9 @@ export const usersApi = {
     async getUserProfile (login: string) {
         const data = await axios.get(`https://api.github.com/users/${login}`)
         return data.data
+    },
+    async getUserRepos (login: string) {
+        const data = await axios.get(`https://api.github.com/users/${login}/repos?per_page=4`)
+        return data.data
     }
 }

@@ -8,7 +8,7 @@ type AvatarPropsType = {
 export const Avatar = (props: AvatarPropsType) => {
     return (
         <div className={s.avatar}>
-            {props.avatar_url !== '' ? <img alt='avatar' src={props.avatar_url}/> : null}
+            <img alt='avatar' src={props.avatar_url}/>
         </div>
     )
 }

@@ -1,28 +1,7 @@
 import {usersApi} from "../api/usersApi"
+import {UsersStateType} from "./profileReducer";
+import {Dispatch} from "redux";
 
-export type UsersStateType = {
-    login: string,
-    id: number,
-    node_id: string,
-    avatar_url: string,
-    gravatar_id: string,
-    url: string,
-    html_url: string,
-    followers_url: string,
-    following_url: string,
-    gists_url: string,
-    starred_url: string,
-    subscriptions_url: string,
-    organizations_url: string,
-    repos_url: string,
-    events_url: string,
-    received_events_url: string,
-    type: string,
-    site_admin: boolean,
-    name: string,
-    followers: number,
-    following: number
-}
 
 const initialState: Array<any> = []
 export const usersReducer = (state: Array<UsersStateType> = initialState, action: any) => {
@@ -38,7 +17,7 @@ export const usersReducer = (state: Array<UsersStateType> = initialState, action
 export const SetUsersAC = (data: any[]) => {
     return {type: 'SET_USERS', data}
 }
-export const SetUsersThunk = () => async (dispatch: Function) => {
+export const SetUsersThunk = () => async (dispatch: Dispatch) => {
     try {
         let data = await usersApi.getUsers()
         console.log(data.data)

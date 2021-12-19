@@ -1,12 +1,12 @@
 import React from 'react';
-import './App.css';
+import s from './App.module.css';
 import Header from "./components/header/header";
 import {Profile} from "./components/profile/profile";
 
 function App() {
 
     return (
-        <div>
+        <div className={s.app}>
             <Header/>
             <Profile/>
         </div>
