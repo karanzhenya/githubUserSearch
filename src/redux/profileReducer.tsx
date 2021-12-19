@@ -1,5 +1,6 @@
 import {usersApi} from "../api/usersApi"
 import {Dispatch} from "redux";
+import {AppRootStateType} from "./store";
 
 
 export type UsersStateType = {
@@ -144,11 +145,20 @@ export const SetUserProfile = (data: any) => {
 export const SetUserRepositories = (repos: Array<UserReposType>) => {
     return {type: 'SET_USER_REPOS', repos}
 }
-export const GetUserProfileThunk = (login: string) => async (dispatch: Dispatch) => {
+export const GetUserProfileTC = (login: string) => async (dispatch: Dispatch) => {
     try {
         const data = await usersApi.getUserProfile(login)
         dispatch(SetUserProfile(data))
         const repos = await usersApi.getUserRepos(login)
+        dispatch(SetUserRepositories(repos))
+    } catch (err) {
+        console.log(err)
+    }
+}
+export const GetUserReposCurrentPageTC = (page: number) => async (dispatch: Dispatch, getState: () => AppRootStateType) => {
+    const login = getState().profile.login
+    try {
+        const repos = await usersApi.getUserReposCurrentPage(login, page)
         dispatch(SetUserRepositories(repos))
     } catch (err) {
         console.log(err)

@@ -1,7 +1,7 @@
 import * as React from "react";
 import {useForm} from "react-hook-form";
 import {useDispatch} from "react-redux";
-import {GetUserProfileThunk} from "../../../redux/profileReducer";
+import {GetUserProfileTC} from "../../../redux/profileReducer";
 import SearchIcon from '@mui/icons-material/Search';
 import s from "./searchField.module.css"
 
@@ -12,7 +12,7 @@ type FormData = {
 export const SearchField = () => {
     const dispatch = useDispatch();
     const {register, handleSubmit} = useForm<FormData>();
-    const onSubmit = handleSubmit(data => dispatch(GetUserProfileThunk(data.login)));
+    const onSubmit = handleSubmit(data => dispatch(GetUserProfileTC(data.login)));
 
     return (
         <form onSubmit={onSubmit}>
