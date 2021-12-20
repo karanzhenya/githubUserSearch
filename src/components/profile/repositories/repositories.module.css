@@ -1,7 +1,9 @@
 .repo_container {
     display: flex;
     flex-direction: column;
+    flex-wrap: wrap;
     height: 100%;
     min-width: 650px;
+    max-width: 650px;
     justify-content: space-around;
 }
