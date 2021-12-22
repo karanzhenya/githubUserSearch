@@ -1,19 +1,24 @@
 import React from 'react';
 import s from './profile.module.css'
 import {useSelector} from "react-redux";
-import {UsersStateType} from "../../redux/profileReducer";
+import {InitialStateType} from "../../redux/profileReducer";
 import {AppRootStateType} from "../../redux/store";
 import {Avatar} from "./avatar/avatar";
 import {Subscriptions} from "./subscriptions/subscriptions";
 import {Repositories} from "./repositories/repositories";
 import {Paginator} from "./paginator/paginator";
+import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 export const Profile = () => {
 
-    const profile = useSelector<AppRootStateType, UsersStateType>(state => state.profile)
+    const profile = useSelector<AppRootStateType, InitialStateType>(state => state.profile)
+
+    if (profile.loading) {
+        return <LinearProgress color="primary" className={s.preloader}/>
+    }
     if (profile.id === 0) {
-        return <h1>Please, find user in base!</h1>
+        return <h1 className={s.precept}>Please, find user in base!</h1>
     }
     return (
         <div className={s.container}>

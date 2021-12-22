@@ -25,4 +25,20 @@
     gap: 200px;
 }
 
+.precept {
+    display: flex;
+    position: relative;
+    justify-content: center;
+    top: 100px;
+}
 
+.preloader {
+    display: flex;
+    position: absolute;
+    justify-items: center;
+    top: 100px;
+}
+.preloader img {
+    width: 400px;
+
+}

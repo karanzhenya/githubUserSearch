@@ -1,10 +1,10 @@
 import * as React from "react";
 import s from "./repo.module.css";
-import {UserReposType, UsersStateType} from "../../../../redux/profileReducer";
+import {UserReposType, InitialStateType} from "../../../../redux/profileReducer";
 import Paper from "@mui/material/Paper";
 
 type RepositoriesPropType = {
-    profile: UsersStateType,
+    profile: InitialStateType,
     repo: UserReposType
 }
 

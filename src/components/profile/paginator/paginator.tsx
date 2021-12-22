@@ -19,11 +19,11 @@ export const Paginator = (props: PaginatorPropTypes) => {
         pages.push(i)
     }
     const getUserReposCurrentPage = (page: number) => {
+        setCurrentPage(page)
         dispatch(GetUserReposCurrentPageTC(page))
     }
     return (
         <Pagination shape={"rounded"} count={totalRepos} page={currentPage} onChange={(_, numPage) => {
-            setCurrentPage(numPage)
             getUserReposCurrentPage(numPage)
         }}/>
     )
