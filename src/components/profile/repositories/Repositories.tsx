@@ -1,10 +1,10 @@
 import * as React from "react";
-import s from "./repositories.module.css";
-import {InitialStateType} from "../../../redux/profileReducer";
-import {Repo} from "./Repo/repo";
+import s from "./Repositories.module.css";
+import {InitialProfileStateType} from "../../../redux/profileReducer";
+import {Repo} from "./Repo/Repo";
 
 type RepositoriesPropType = {
-    profile: InitialStateType
+    profile: InitialProfileStateType
 }
 
 export const Repositories = (props: RepositoriesPropType) => {

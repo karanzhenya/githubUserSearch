@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './subscriptions.module.css'
+import s from './Subscriptions.module.css'
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import PersonIcon from '@mui/icons-material/Person';
 

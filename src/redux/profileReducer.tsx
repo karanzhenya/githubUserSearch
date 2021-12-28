@@ -1,9 +1,10 @@
 import {usersApi} from "../api/usersApi"
 import {Dispatch} from "redux";
 import {AppRootStateType} from "./store";
+import {ChangeLoadingStatus, SetError} from "./appReducer";
 
 
-export type InitialStateType = {
+export type InitialProfileStateType = {
     login: string,
     id: number,
     avatar_url: string,
@@ -15,8 +16,7 @@ export type InitialStateType = {
     name: string,
     followers: number,
     following: number,
-    repositories: Array<UserReposType>,
-    loading: boolean
+    repositories: Array<UserReposType>
 }
 export type UserReposType = {
     allow_forking: boolean
@@ -98,38 +98,22 @@ export type UserReposType = {
     watchers_count: number
 }
 
-
-const initialState: InitialStateType = {
-    login: "",
-    id: 0,
-    avatar_url: "",
-    url: "",
-    followers_url: "",
-    following_url: "",
-    repos_url: "",
-    public_repos: "",
-    name: "",
-    followers: 0,
-    following: 0,
-    repositories: [],
-    loading: false
-}
+const initialState: InitialProfileStateType = {} as InitialProfileStateType
 
 type SetUserProfileActionType = {
     type: 'SET_USER_PROFILE',
-    data: InitialStateType
+    data: InitialProfileStateType
 }
 type SetUserReposActionType = {
     type: 'SET_USER_REPOS',
     repos: UserReposType[]
 }
-type ChangeLoadingStatusActionType = {
-    type: 'CHANGE-LOADING-STATUS'
-}
 
-type ActionsType = SetUserProfileActionType | SetUserReposActionType | ChangeLoadingStatusActionType;
+type ActionsType =
+    SetUserProfileActionType
+    | SetUserReposActionType;
 
-export const profileReducer = (state: InitialStateType = initialState, action: ActionsType) => {
+export const profileReducer = (state: InitialProfileStateType = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'SET_USER_PROFILE': {
             let stateCopy = {...state}
@@ -141,35 +125,44 @@ export const profileReducer = (state: InitialStateType = initialState, action: A
             stateCopy.repositories = action.repos
             return stateCopy
         }
-        case "CHANGE-LOADING-STATUS": {
-            let stateCopy = {...state}
-            stateCopy.loading = !stateCopy.loading
-            return stateCopy
-        }
         default:
             return state;
     }
 }
 
-export const SetUserProfile = (data: InitialStateType) => {
+export const SetUserProfile = (data: InitialProfileStateType) => {
     return {type: 'SET_USER_PROFILE', data}
 }
 export const SetUserRepositories = (repos: Array<UserReposType>) => {
     return {type: 'SET_USER_REPOS', repos}
 }
-export const ChangeLoadingStatus = () => {
-    return {type: 'CHANGE-LOADING-STATUS'}
-}
+
 export const GetUserProfileTC = (login: string) => async (dispatch: Dispatch) => {
-    dispatch(ChangeLoadingStatus())
+    dispatch(ChangeLoadingStatus("loading"))
     try {
         const data = await usersApi.getUserProfile(login)
         dispatch(SetUserProfile(data.data))
         const repos = await usersApi.getUserRepos(login)
         dispatch(SetUserRepositories(repos))
     } catch (err) {
-        console.warn(err)
+        if (err) {
+            dispatch(SetError("User not found"))
+        }
+    } finally {
+        dispatch(ChangeLoadingStatus("success"))
     }
+    /*dispatch(ChangeLoadingStatus())
+    usersApi.getUserProfile(login)
+        .then((res) => {
+            dispatch(SetUserProfile(res.data))
+        })
+        .catch((err: AxiosError) => {
+            console.log("User " + err.response?.data.message)
+            dispatch(ChangeLoadingStatus())
+        })
+    usersApi.getUserRepos(login).then((repos) => {
+        dispatch(SetUserRepositories(repos))
+    })*/
 
 }
 export const GetUserReposCurrentPageTC = (page: number) => async (dispatch: Dispatch, getState: () => AppRootStateType) => {
