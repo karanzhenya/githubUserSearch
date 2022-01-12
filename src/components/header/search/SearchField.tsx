@@ -14,7 +14,7 @@ export const SearchField = () => {
 
     const {register, handleSubmit} = useForm<FormData>();
     const onSubmit = handleSubmit(data => {
-            dispatch(GetUserProfileTC(data.login))
+            dispatch(GetUserProfileTC(data.login.trim()))
         }
     );
 
