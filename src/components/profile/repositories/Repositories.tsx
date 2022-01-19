@@ -12,7 +12,7 @@ export const Repositories = (props: RepositoriesPropType) => {
         <div className={s.repo_container}>
             {
                 props.profile.repositories !== undefined ? props.profile.repositories.map(r => {
-                    return <Repo profile={props.profile} repo={r}/>
+                    return <Repo key={r.id} profile={props.profile} repo={r}/>
                 }) : null}
         </div>
     )

@@ -1,8 +1,6 @@
 import React from 'react';
 import s from './Profile.module.css'
-import {useSelector} from "react-redux";
 import {InitialProfileStateType} from "../../redux/profileReducer";
-import {AppRootStateType} from "../../redux/store";
 import {Avatar} from "./avatar/Avatar";
 import {Subscriptions} from "./subscriptions/Subscriptions";
 import {Repositories} from "./repositories/Repositories";
@@ -11,10 +9,11 @@ import LinearProgress from '@material-ui/core/LinearProgress';
 import StartPage from "../startPage/StartPage";
 import {InitialAppStateType} from "../../redux/appReducer";
 
-
-export const Profile = () => {
-    const profile = useSelector<AppRootStateType, InitialProfileStateType>(state => state.profile)
-    const appState = useSelector<AppRootStateType, InitialAppStateType>(state => state.app)
+type ProfilePropType = {
+    profile: InitialProfileStateType,
+    appState: InitialAppStateType
+}
+export const Profile = ({profile, appState}: ProfilePropType) => {
 
     if (appState.status === "loading") {
         return <LinearProgress color="primary" className={s.preloader}/>

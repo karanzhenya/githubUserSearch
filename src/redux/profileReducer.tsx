@@ -138,18 +138,19 @@ export const SetUserRepositories = (repos: Array<UserReposType>) => {
 }
 
 export const GetUserProfileTC = (login: string) => async (dispatch: Dispatch) => {
+    debugger
     dispatch(ChangeLoadingStatus("loading"))
     try {
         const data = await usersApi.getUserProfile(login)
         dispatch(SetUserProfile(data.data))
         const repos = await usersApi.getUserRepos(login)
         dispatch(SetUserRepositories(repos))
+        dispatch(ChangeLoadingStatus("success"))
     } catch (err) {
         if (err) {
             dispatch(SetError("User not found"))
+            dispatch(ChangeLoadingStatus("failed"))
         }
-    } finally {
-        dispatch(ChangeLoadingStatus("success"))
     }
     /*dispatch(ChangeLoadingStatus())
     usersApi.getUserProfile(login)
