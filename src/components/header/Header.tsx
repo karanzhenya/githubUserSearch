@@ -1,6 +1,6 @@
 import React from 'react';
 import {SearchField} from "./search/SearchField";
-import github_icon from "../../utils/github_icon.png"
+import github_icon from "../../assets/github_icon.png"
 import s from './Header.module.css'
 
 function Header() {

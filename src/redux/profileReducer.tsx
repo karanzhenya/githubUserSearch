@@ -121,9 +121,7 @@ export const profileReducer = (state: InitialProfileStateType = initialState, ac
             return stateCopy
         }
         case "SET_USER_REPOS": {
-            let stateCopy = {...state}
-            stateCopy.repositories = action.repos
-            return stateCopy
+            return {...state, repositories: action.repos}
         }
         default:
             return state;
@@ -138,7 +136,6 @@ export const SetUserRepositories = (repos: Array<UserReposType>) => {
 }
 
 export const GetUserProfileTC = (login: string) => async (dispatch: Dispatch) => {
-    debugger
     dispatch(ChangeLoadingStatus("loading"))
     try {
         const data = await usersApi.getUserProfile(login)
