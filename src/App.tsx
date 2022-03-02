@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import s from './App.module.css';
+import s from './App.module.scss'
 import {Profile} from "./components/profile/Profile";
 import Header from "./components/header/Header";
 import {Route, Routes, useNavigate} from 'react-router-dom';
@@ -15,6 +15,7 @@ function App() {
 
     const profile = useSelector<AppRootStateType, InitialProfileStateType>(state => state.profile)
     const appState = useSelector<AppRootStateType, InitialAppStateType>(state => state.app)
+
     useEffect(() => {
         if (appState.status === "failed") {
             navigate('404')

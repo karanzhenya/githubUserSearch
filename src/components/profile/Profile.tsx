@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Profile.module.css'
+import s from './Profile.module.scss'
 import {InitialProfileStateType} from "../../redux/profileReducer";
 import {Avatar} from "./avatar/Avatar";
 import {Subscriptions} from "./subscriptions/Subscriptions";
@@ -20,22 +20,23 @@ export const Profile = ({profile, appState}: ProfilePropType) => {
     }
     if (profile.id === undefined) {
         return <StartPage/>
+    } else {
+        return (
+            <div className={s.container}>
+                <div className={s.left_part}>
+                    <img alt='avatar' src={profile.avatar_url}/>
+                    <h1 className={s.name}>{profile.name}</h1>
+                    <a target="_blank" rel="noreferrer" href={`https://github.com/${profile.login}`}>{profile.login}</a>
+                    <Subscriptions followers={profile.followers} following={profile.following}/>
+                </div>
+                <div className={s.right_part}>
+                    <h1>Repositories ({profile.public_repos})</h1>
+                    <Repositories profile={profile} key={profile.id}/>
+                    <Paginator repos={Number(profile.public_repos)}/>
+                </div>
+            </div>
+        )
     }
-     else {return (
-        <div className={s.container}>
-            <div className={s.left_part}>
-                <Avatar avatar_url={profile.avatar_url}/>
-                <h1 className={s.name}>{profile.name}</h1>
-                <a target="_blank" rel="noreferrer" href={`https://github.com/${profile.login}`}>{profile.login}</a>
-                <Subscriptions followers={profile.followers} following={profile.following}/>
-            </div>
-            <div className={s.right_part}>
-                <h1>Repositories ({profile.public_repos})</h1>
-                <Repositories profile={profile} key={profile.id}/>
-                <Paginator repos={Number(profile.public_repos)}/>
-            </div>
-        </div>
-    )}
 
 
 }

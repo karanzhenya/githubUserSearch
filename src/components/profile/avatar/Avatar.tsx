@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Avatar.module.css'
+import s from '../Profile.module.scss'
 
 type AvatarPropsType = {
     avatar_url: string
@@ -7,8 +7,6 @@ type AvatarPropsType = {
 
 export const Avatar = (props: AvatarPropsType) => {
     return (
-        <div className={s.avatar}>
-            <img alt='avatar' src={props.avatar_url}/>
-        </div>
+        <></>
     )
 }

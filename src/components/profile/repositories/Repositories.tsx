@@ -1,5 +1,5 @@
 import * as React from "react";
-import s from "./Repositories.module.css";
+import s from "../Profile.module.scss";
 import {InitialProfileStateType} from "../../../redux/profileReducer";
 import {Repo} from "./Repo/Repo";
 

@@ -1,0 +1,24 @@
+.search {
+  position: relative;
+
+  input {
+    height: 23px;
+    padding-left: 25px;
+    border: none;
+    margin-left: 20px;
+    border-radius: 5px;
+  }
+
+  .icon {
+    color: grey;
+    position: absolute;
+    left: 20px;
+  }
+}
+
+@media screen and (max-width: 316px) {
+  .search {
+
+  }
+}
+

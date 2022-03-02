@@ -1,0 +1,21 @@
+$bakgroundColor: dodgerblue;
+
+.header {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  background-color: $bakgroundColor;
+  top: 0;
+  width: 100%;
+  height: 60px;
+
+  .container {
+    position: absolute;
+    display: flex;
+    left: 50px;
+
+    img {
+      height: 40px;
+    }
+  }
+}

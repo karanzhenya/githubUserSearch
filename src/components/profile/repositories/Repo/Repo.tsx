@@ -1,5 +1,5 @@
 import * as React from "react";
-import s from "./Repo.module.css";
+import s from "./Repo.module.scss";
 import {UserReposType, InitialProfileStateType} from "../../../../redux/profileReducer";
 import Paper from "@mui/material/Paper";
 

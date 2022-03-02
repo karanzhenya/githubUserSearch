@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './StartPage.module.css';
+import s from './StartPage.module.scss';
 
 const StartPage = () => {
     return <h1 className={s.precept}>Please, find user in base!</h1>
