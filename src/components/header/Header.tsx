@@ -1,9 +1,8 @@
-import React from 'react';
 import {SearchField} from "./search/SearchField";
 import github_icon from "../../assets/github_icon.png"
 import s from './Header.module.scss'
 
-function Header() {
+export const Header = () => {
     return (
         <div className={s.header}>
             <div className={s.container}>
@@ -15,5 +14,3 @@ function Header() {
         </div>
     )
 }
-
-export default Header;

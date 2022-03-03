@@ -1,7 +1,6 @@
-import * as React from "react";
-import s from "../Profile.module.scss";
 import {InitialProfileStateType} from "../../../redux/profileReducer";
 import {Repo} from "./Repo/Repo";
+import s from "../Profile.module.scss";
 
 type RepositoriesPropType = {
     profile: InitialProfileStateType

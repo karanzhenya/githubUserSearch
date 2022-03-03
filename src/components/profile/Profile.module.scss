@@ -25,24 +25,16 @@
       color: #0775dc;
     }
   }
-}
 
-.right_part {
-  .repo_container {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    width: 650px;
-    justify-content: space-around;
+  .right_part {
+    .repo_container {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      width: 650px;
+      justify-content: space-around;
+    }
   }
-}
-
-.precept {
-  display: flex;
-  position: relative;
-  justify-content: center;
-  top: 100px;
-  color: #0775dc;
 }
 
 .preloader {
@@ -57,9 +49,11 @@
 }
 
 @media screen and (max-width: 1114px) {
-  .right_part {
-    .repo_container {
-      width: auto;
+  .container {
+    .right_part {
+      .repo_container {
+        width: auto;
+      }
     }
   }
 }

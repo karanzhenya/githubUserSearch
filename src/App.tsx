@@ -1,15 +1,21 @@
-import React, {useEffect} from 'react';
-import s from './App.module.scss'
-import {Profile} from "./components/profile/Profile";
-import Header from "./components/header/Header";
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import {useSelector} from "react-redux";
+import {useEffect} from 'react';
+import {Profile} from "./components/profile/Profile";
+import {Header} from "./components/header/Header";
+import {StartPage} from "./components/startPage/StartPage";
 import {AppRootStateType} from "./redux/store";
 import {InitialProfileStateType} from "./redux/profileReducer";
-import StartPage from "./components/startPage/StartPage";
 import {InitialAppStateType} from "./redux/appReducer";
+import s from './App.module.scss'
 
-function App() {
+export const PATH = {
+    START_PAGE: 'test_exercise',
+    PAGE404: '404',
+    PROFILE: `/profile/`
+}
+
+export const App = () => {
 
     const navigate = useNavigate();
 
@@ -18,19 +24,19 @@ function App() {
 
     useEffect(() => {
         if (appState.status === "failed") {
-            navigate('404')
+            navigate(PATH.PAGE404)
         }
     }, [appState.status])
+
     return (
         <div className={s.app}>
             <Header/>
             <Routes>
-                <Route path='/' element={<StartPage/>}/>
-                <Route path='404' element={<h1 style={{padding: "100px"}}>Page not found!</h1>}/>
-                <Route path={`/profile/${profile.login}`} element={<Profile profile={profile} appState={appState}/>}/>
+                <Route path={PATH.START_PAGE} element={<StartPage/>}/>
+                <Route path={PATH.PAGE404} element={<h1 style={{padding: "100px"}}>Page not found!</h1>}/>
+                <Route path={PATH.PROFILE + `${profile.login}`}
+                       element={<Profile profile={profile} appState={appState}/>}/>
             </Routes>
         </div>
     )
 }
-
-export default App;

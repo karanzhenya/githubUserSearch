@@ -1,13 +1,11 @@
-import React from 'react';
-import s from './Profile.module.scss'
 import {InitialProfileStateType} from "../../redux/profileReducer";
-import {Avatar} from "./avatar/Avatar";
 import {Subscriptions} from "./subscriptions/Subscriptions";
 import {Repositories} from "./repositories/Repositories";
+import {StartPage} from "../startPage/StartPage";
 import {Paginator} from "./paginator/Paginator";
 import LinearProgress from '@material-ui/core/LinearProgress';
-import StartPage from "../startPage/StartPage";
 import {InitialAppStateType} from "../../redux/appReducer";
+import s from './Profile.module.scss'
 
 type ProfilePropType = {
     profile: InitialProfileStateType,

@@ -1,7 +1,6 @@
-import React from 'react';
-import s from '../Profile.module.scss'
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 import PersonIcon from '@mui/icons-material/Person';
+import s from '../Profile.module.scss'
 
 type SubscriptionsPropsType = {
     followers: number,
@@ -9,7 +8,6 @@ type SubscriptionsPropsType = {
 }
 
 export const Subscriptions = (props: SubscriptionsPropsType) => {
-
     return (
         <div className={s.subscriptions}>
             <SupervisorAccountIcon style={{color: "grey"}}/>

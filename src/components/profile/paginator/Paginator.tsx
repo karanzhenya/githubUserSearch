@@ -1,7 +1,7 @@
-import React, {useState} from 'react';
-import {GetUserReposCurrentPageTC} from "../../../redux/profileReducer";
+import {useState} from 'react';
 import {useDispatch} from "react-redux";
-import {Pagination} from "@mui/material";
+import {GetUserReposCurrentPageTC} from "../../../redux/profileReducer";
+import Pagination from "@mui/material/Pagination";
 
 
 type PaginatorPropTypes = {
