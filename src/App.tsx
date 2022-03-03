@@ -12,7 +12,7 @@ import s from './App.module.scss'
 export const PATH = {
     START_PAGE: 'test_exercise',
     PAGE404: '404',
-    PROFILE: `/profile/`
+    PROFILE: `test_exercise/profile/`
 }
 
 export const App = () => {
@@ -25,6 +25,9 @@ export const App = () => {
     useEffect(() => {
         if (appState.status === "failed") {
             navigate(PATH.PAGE404)
+        }
+        if (profile.id === 0) {
+            navigate(PATH.START_PAGE)
         }
     }, [appState.status])
 

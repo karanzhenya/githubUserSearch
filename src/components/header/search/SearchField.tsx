@@ -15,7 +15,7 @@ export const SearchField = () => {
         },
         onSubmit: values => {
             dispatch(GetUserProfileTC(values.login.trim()))
-            navigate(`profile/${formik.values.login}`)
+            navigate(`test_exercise/profile/${formik.values.login}`)
         }
     });
     return (

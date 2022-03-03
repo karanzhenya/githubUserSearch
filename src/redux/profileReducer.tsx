@@ -98,7 +98,20 @@ export type UserReposType = {
     watchers_count: number
 }
 
-const initialState: InitialProfileStateType = {} as InitialProfileStateType
+const initialState: InitialProfileStateType = {
+    login: '',
+    id: 0,
+    avatar_url: '',
+    url: '',
+    followers_url: '',
+    following_url: '',
+    repos_url: '',
+    public_repos: '',
+    name: '',
+    followers: 0,
+    following: 0,
+    repositories: []
+} as InitialProfileStateType
 
 type SetUserProfileActionType = {
     type: 'SET_USER_PROFILE',
@@ -116,9 +129,10 @@ type ActionsType =
 export const profileReducer = (state: InitialProfileStateType = initialState, action: ActionsType) => {
     switch (action.type) {
         case 'SET_USER_PROFILE': {
-            let stateCopy = {...state}
+            /*let stateCopy = {...state}
             stateCopy = action.data
-            return stateCopy
+            return stateCopy*/
+            return {...state, ...action.data}
         }
         case "SET_USER_REPOS": {
             return {...state, repositories: action.repos}
