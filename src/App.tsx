@@ -12,7 +12,7 @@ import s from './App.module.scss'
 export const PATH = {
     START_PAGE: 'githubUserSearch',
     PAGE404: '404',
-    PROFILE: `githubUserSearch/profile/`
+    PROFILE: `githubUserSearch/profile`
 }
 
 export const App = () => {
@@ -37,7 +37,7 @@ export const App = () => {
             <Routes>
                 <Route path={PATH.START_PAGE} element={<StartPage/>}/>
                 <Route path={PATH.PAGE404} element={<h1 style={{padding: "100px"}}>Page not found!</h1>}/>
-                <Route path={PATH.PROFILE + `${profile.login}`}
+                <Route path={PATH.PROFILE + `/${profile.login}`}
                        element={<Profile profile={profile} appState={appState}/>}/>
             </Routes>
         </div>
