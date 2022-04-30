@@ -5,6 +5,7 @@ import SearchIcon from '@mui/icons-material/Search';
 import s from "./SearchField.module.scss"
 import {useFormik} from "formik";
 import {useNavigate} from "react-router-dom";
+import {PATH} from "../../../App";
 
 export const SearchField = () => {
     const dispatch = useDispatch();
@@ -15,7 +16,7 @@ export const SearchField = () => {
         },
         onSubmit: values => {
             dispatch(GetUserProfileTC(values.login.trim()))
-            navigate(`test_exercise/profile/${formik.values.login}`)
+            navigate(`${PATH.PROFILE}/${formik.values.login}`)
         }
     });
     return (
