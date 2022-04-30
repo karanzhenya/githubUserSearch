@@ -10,9 +10,9 @@ import {InitialAppStateType} from "./redux/appReducer";
 import s from './App.module.scss'
 
 export const PATH = {
-    START_PAGE: 'test_exercise',
+    START_PAGE: 'githubUserSearch',
     PAGE404: '404',
-    PROFILE: `test_exercise/profile/`
+    PROFILE: `githubUserSearch/profile/`
 }
 
 export const App = () => {
